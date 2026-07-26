@@ -21,6 +21,7 @@ void print_usage(char *argv[]) {
 int main(int argc, char *argv[]) { 
     char *filepath = NULL;
     char *addstring = NULL;
+    char *removestring = NULL;
     bool newfile = false;    
     bool list = false;
     int c;
@@ -29,7 +30,7 @@ int main(int argc, char *argv[]) {
     struct dbheader_t *dbhdr = NULL;
     struct employee_t *employees = NULL;
 
-    while ((c = getopt(argc, argv, "nf:a:l")) != -1) {
+    while ((c = getopt(argc, argv, "nf:a:lr:")) != -1) {
         switch (c) {
             case 'n':
                 newfile = true;
@@ -42,6 +43,9 @@ int main(int argc, char *argv[]) {
                 break;
             case 'l':
                 list = true;
+                break;
+            case 'r':
+                removestring = optarg;
                 break;
             case '?':
                 printf("Unknown option -%c\n", c);
@@ -87,6 +91,7 @@ int main(int argc, char *argv[]) {
         printf("Failed to read employees\n");
         return 0;
     }
+
     if (addstring) {
         add_employee(dbhdr, &employees, addstring);
     }
@@ -94,6 +99,10 @@ int main(int argc, char *argv[]) {
     if (list) {
         list_employees(dbhdr, employees);
     }
+
+    /*if (removestring) {
+        remove_employee(dbhdr, &employees, removestring);
+    }*/
 
     output_file(dbfd, dbhdr, employees);
 

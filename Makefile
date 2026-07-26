@@ -5,7 +5,11 @@ OBJ = $(patsubst src/%.c, obj/%.o, $(SRC))
 run: clean default
 	./$(TARGET) -f ./mynewdb.db -n
 	./$(TARGET) -f ./mynewdb.db -a "Timmy H.,123 Sheshire Ln.,120"
-
+	./$(TARGET) -f ./mynewdb.db -a "Kenny G.,444 Walloby Way,140" 
+	./$(TARGET) -f ./mynewdb.db -a "Kenny H.,445 Walloby Way,140" 
+	./$(TARGET) -f ./mynewdb.db -a "Kenny I.,446 Walloby Way,140" 
+	./$(TARGET) -f ./mynewdb.db -a "Kenny J.,447 Walloby Way,140" 
+	./$(TARGET) -f ./mynewdb.db -a "Kenny K.,448 Walloby Way,140" 
 
 default: $(TARGET)
 

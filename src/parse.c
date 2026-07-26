@@ -10,9 +10,54 @@
 #include "common.h"
 #include "parse.h"
 
+/*int remove_employee(struct dbheader_t *dbhdr, struct employee_t **employees, char *removestring) {
+    if (NULL == dbhdr) return STATUS_ERROR;
+    if (NULL == employees) return STATUS_ERROR;
+    if (NULL == *employees) return STATUS_ERROR;
+    if (NULL == removestring) return STATUS_ERROR;
+
+    char *endptr = NULL;
+    long removeidx = strtol(removestring, &endptr, 10);
+
+    printf("remove index: %d\n", removeidx);
+    printf("dbhr count: %d\n", dbhdr->count);
+    
+    if (endptr == removestring || *endptr != '\0') {
+        printf("Invalid employee index: %s\n", removestring);
+        return STATUS_ERROR;
+    }
+
+    if (removeidx >= dbhdr->count || removeidx < 0) {
+        printf("No such employee index exists.\n");
+        return STATUS_ERROR;
+    }
+    struct employee_t *e = *employees;
+
+    for (int i = (int)removeidx ; i < dbhdr->count - 1; i++) {
+        e[i] = e[i+1];
+    }
+
+    dbhdr->count--;
+    
+    if (dbhdr->count == 0) {
+        free(e);
+        *employees = NULL;
+        return STATUS_SUCCESS;
+    }
+
+    struct employee_t *smallerArray = realloc(e, sizeof(struct employee_t) * dbhdr->count);
+    if (smallerArray != NULL) {
+        *employees = smallerArray;
+    } else {
+        *employees = e;
+    }
+
+    return STATUS_SUCCESS;
+} */
+
 void list_employees(struct dbheader_t *dbhdr, struct employee_t *employees) {
     int i = 0;
-    for (; i< dbhdr->count; i++) {
+    for (; i < dbhdr->count; i++) {
         printf("Employee %d\n", i);
         printf("\tName: %s\n", employees[i].name);
         printf("\tAddress: %s\n", employees[i].address);
